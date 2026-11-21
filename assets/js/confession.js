@@ -10,8 +10,19 @@
   const savePrefs = () => { try { localStorage.setItem("rc-1689", JSON.stringify(prefs)); } catch {} };
 
   // Index + side nav
-  $("ch-index").innerHTML = DATA.map((c) =>
-    `<a href="#chapter-${c.n}"><span class="r">${ROMAN[c.n]}</span><span class="t">${esc(c.title)}</span><span class="c">${c.paragraphs.length} ¶</span></a>`).join("");
+  const SUM = window.CONFESSION_SUMMARIES || [];
+  $("ch-index").innerHTML = DATA.map((c, i) => {
+    const s = SUM[i] || {};
+    return `<div class="chapter" id="ch${c.n}">
+      <div class="n">${ROMAN[c.n]}</div>
+      <div>
+        <h3><a href="#chapter-${c.n}">${esc(c.title)}</a></h3>
+        ${s.summary ? `<p>${esc(s.summary)}</p>` : ""}
+        ${s.verses ? `<p class="proof">${esc(s.verses)}</p>` : ""}
+        <a class="text-link" href="#chapter-${c.n}">Read chapter · ${c.paragraphs.length} ¶ →</a>
+      </div>
+    </div>`;
+  }).join("");
   $("reader-nav").innerHTML = DATA.map((c) =>
     `<a href="#chapter-${c.n}" data-n="${c.n}"><span>${ROMAN[c.n]}</span><span>${esc(c.title)}</span></a>`).join("");
 
@@ -59,7 +70,7 @@
       if (target) target.scrollIntoView({ block: "start" });
     } else {
       showIndex();
-      if (location.hash === "#index") $("conf-index").scrollIntoView({ block: "start" });
+      if (location.hash === "#index" || location.hash === "#conf-index") $("conf-index").scrollIntoView({ block: "start" });
     }
   }
 
