@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Member Login · Redeemer Church</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <main class="auth-shell" id="main">
+    <div class="auth-visual" style="background-image:url('../assets/img/photos/hero-coast.jpg')">
+      <div>
+        <blockquote>“Now you are the body of Christ and individually members of it.”<cite>1 Corinthians 12:27</cite></blockquote>
+      </div>
+    </div>
+
+    <div class="auth-panel">
+      <a class="brand" href="../index.html">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="24" cy="24" r="19" fill="none" stroke="currentColor" stroke-width=".6" opacity=".6"/><path d="M24 9v30M15 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/><path d="M11 33c4-2.2 8.5-2.2 13 0s9 2.2 13 0" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+        <span class="brand-text"><span class="brand-name">Redeemer Church</span><span class="brand-sub">Members</span></span>
+      </a>
+
+      <div class="auth-tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="signin">Sign In</button>
+        <button role="tab" aria-selected="false" data-tab="request">Request Access</button>
+        <button role="tab" aria-selected="false" data-tab="reset">Forgot Password</button>
+      </div>
+
+      <form class="form" data-panel="signin" id="signin-form">
+        <h2 class="mb-0">Welcome back</h2>
+        <p class="muted">Sign in to the member portal for the directory, prayer requests, documents and more.</p>
+        <label>Email<input type="email" name="email" required autocomplete="username"></label>
+        <label>Password<input type="password" name="password" required autocomplete="current-password"></label>
+        <button class="btn" type="submit">Sign In</button>
+        <p class="form-status" role="status"></p>
+      </form>
+
+      <form class="form" data-panel="request" id="request-form" hidden>
+        <h2 class="mb-0">Request member access</h2>
+        <p class="muted">Portal access is for covenant members. Your request goes to the elders, who will be in touch.</p>
+        <div class="row">
+          <label>Full name<input name="name" required autocomplete="name"></label>
+          <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+        </div>
+        <label>Email<input name="email" type="email" required autocomplete="email"></label>
+        <label>Are you a member?
+          <select name="status">
+            <option>Yes, I'm a member</option>
+            <option>I'm in the membership class</option>
+            <option>I'd like to learn about membership</option>
+          </select>
+        </label>
+        <button class="btn" type="submit">Send Request</button>
+        <p class="form-status" role="status"></p>
+      </form>
+
+      <form class="form" data-panel="reset" id="reset-form" hidden>
+        <h2 class="mb-0">Reset your password</h2>
+        <p class="muted">Enter the email on your member account and we'll send you a reset link.</p>
+        <label>Email<input name="email" type="email" required autocomplete="email"></label>
+        <button class="btn" type="submit">Send Reset Link</button>
+        <p class="form-status" role="status"></p>
+      </form>
+
+      <p class="demo-note" id="demo-note" hidden>
+        <strong>Demo mode.</strong> Sign-in is not connected to a real account system yet.
+        Try <code>member@demo.church</code> / <code>grace</code>, or <code>elder@demo.church</code> / <code>shepherd</code>.
+      </p>
+      <p class="small mt-2"><a href="../index.html">← Back to the website</a></p>
+    </div>
+  </main>
+
+  <script src="../assets/js/auth.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const next = params.get("next") || "index.html";
+    const safeNext = /^[\w-]+\.html(#[\w-]*)?$/.test(next) ? next : "index.html";
+
+    if (MemberAuth.currentUser()) location.replace(safeNext);
+    if (MemberAuth.mode === "demo") document.getElementById("demo-note").hidden = false;
+
+    // Tabs
+    const tabs = document.querySelectorAll("[data-tab]");
+    tabs.forEach((t) => t.addEventListener("click", () => {
+      tabs.forEach((x) => x.setAttribute("aria-selected", String(x === t)));
+      document.querySelectorAll("[data-panel]").forEach((p) => (p.hidden = p.dataset.panel !== t.dataset.tab));
+    }));
+
+    const status = (form, msg, isError) => {
+      const s = form.querySelector(".form-status");
+      s.textContent = msg;
+      s.classList.add("show");
+      s.classList.toggle("error", !!isError);
+    };
+
+    document.getElementById("signin-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const d = new FormData(e.target);
+      try {
+        await MemberAuth.signIn(d.get("email"), d.get("password"));
+        location.replace(safeNext);
+      } catch (err) {
+        status(e.target, err.message, true);
+      }
+    });
+
+    document.getElementById("request-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const d = Object.fromEntries(new FormData(e.target));
+      await MemberAuth.signUp(d);
+      status(e.target, `Mahalo, ${d.name}. Your request has been sent to the elders.`);
+      e.target.reset();
+    });
+
+    document.getElementById("reset-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const d = new FormData(e.target);
+      await MemberAuth.resetPassword(d.get("email"));
+      status(e.target, "If that email belongs to a member account, a reset link is on its way.");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plan a Visit · Redeemer Church</title>
+  <meta name="description" content="Join us on the Lord's Day in Kailua-Kona. Service times, directions, and what to expect.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero" style="background-image:url('assets/img/photos/community.jpg')">
+      <div class="wrap">
+        <span class="kicker light">Plan a Visit</span>
+        <h1>Join us on the Lord's Day</h1>
+        <p>Sundays at 4:00 PM · 77-165 Lako St., Kailua-Kona. Come as you are — we would love to meet you.</p>
+      </div>
+    </section>
+
+    <div class="times-band">
+      <div class="wrap">
+        <div class="cell"><div class="label">Worship Service</div><div class="value">Sundays · 4:00 PM<small>About 90 minutes</small></div></div>
+        <div class="cell"><div class="label">Keiki &amp; Nursery</div><div class="value">Check-in 3:45 PM<small>Ages 0–10, nursery – 4th grade</small></div></div>
+        <div class="cell"><div class="label">Students</div><div class="value">Thursdays · 6–8 PM<small>Middle &amp; high school</small></div></div>
+      </div>
+    </div>
+
+    <section id="worship">
+      <div class="wrap split">
+        <div>
+          <span class="kicker">What to Expect</span>
+          <h2>Simple, reverent, joyful worship</h2>
+          <p class="lead">Our worship is shaped by Scripture. We read God's Word, sing it, pray it, preach it, and see it in the ordinances.</p>
+          <p>You'll be greeted at the door, and someone can help you check in your keiki. Dress is island-casual. Stay afterward — we often share potlucks and fellowship in the breezeway.</p>
+          <p>The Lord's Supper is regularly observed and is open to baptized believers who are members in good standing of a gospel-preaching church.</p>
+        </div>
+        <div>
+          <ol class="liturgy">
+            <li><div><strong>Call to Worship</strong><span>God summons His people by His Word.</span></div></li>
+            <li><div><strong>Praise &amp; Confession</strong><span>We sing His praise and confess our sin, hearing the assurance of pardon in Christ.</span></div></li>
+            <li><div><strong>Reading of Scripture</strong><span>The public reading of the Old and New Testaments.</span></div></li>
+            <li><div><strong>Prayer</strong><span>Pastoral prayer for the church, our island and the nations.</span></div></li>
+            <li><div><strong>Preaching of the Word</strong><span>Expository preaching through books of the Bible.</span></div></li>
+            <li><div><strong>The Lord's Supper</strong><span>Communion with Christ and one another by faith.</span></div></li>
+            <li><div><strong>Benediction</strong><span>We go out under the blessing of the triune God.</span></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-paper bordered" id="contact">
+      <div class="wrap split">
+        <div>
+          <span class="kicker">Contact</span>
+          <h2>How can we kōkua?</h2>
+          <ul class="contact-list">
+            <li><span class="label">Sunday Location</span>77-165 Lako St., Kailua-Kona, HI 96740 · <a href="https://www.google.com/maps/place/77-165+Lako+St,+Kailua-Kona,+HI+96740" target="_blank" rel="noopener">Directions</a></li>
+            <li><span class="label">Mailing Address</span>PO Box 2963, Kailua-Kona, HI 96745</li>
+            <li><span class="label">Phone</span><a href="tel:8087569926">808.756.9926</a></li>
+            <li><span class="label">Email</span><a href="mailto:aloha@shorebreakchurch.com">aloha@shorebreakchurch.com</a></li>
+          </ul>
+          <iframe class="map-embed mt-2" title="Map to the church" loading="lazy" src="https://www.google.com/maps?q=77-165+Lako+St,+Kailua-Kona,+HI+96740&output=embed"></iframe>
+        </div>
+        <div>
+          <span class="kicker">Send a Message</span>
+          <h3>We'd love to hear from you</h3>
+          <form class="form" id="contact-form">
+            <div class="row">
+              <label>Name<input name="name" required autocomplete="name"></label>
+              <label>Email<input name="email" type="email" required autocomplete="email"></label>
+            </div>
+            <label>I'm interested in
+              <select name="topic">
+                <option>Planning a visit</option>
+                <option>Membership</option>
+                <option>Baptism</option>
+                <option>Prayer request</option>
+                <option>Kōkua (help)</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>Message<textarea name="message" rows="6" required></textarea></label>
+            <button class="btn" type="submit">Send Message</button>
+            <p class="form-status" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="assets/js/site.js"></script>
+  <script>
+    // Until a form service is connected, open the visitor's mail app with the message filled in.
+    document.getElementById("contact-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const d = new FormData(e.target);
+      const body = `${d.get("message")}\n\n— ${d.get("name")} (${d.get("email")})`;
+      location.href = `mailto:${CHURCH.email}?subject=${encodeURIComponent("Website: " + d.get("topic"))}&body=${encodeURIComponent(body)}`;
+      const s = e.target.querySelector(".form-status");
+      s.textContent = "Opening your email app to send this message…";
+      s.classList.add("show");
+    });
+  </script>
+</body>
+</html>
