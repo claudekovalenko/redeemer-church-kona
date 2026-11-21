@@ -4,7 +4,10 @@ Website for a gospel-centered church in Kailua-Kona, rooted in the historic Refo
 and the Second London Baptist Confession of Faith (1689). Content and photos were
 carried over from shorebreakchurch.com and rewritten in a Reformed voice.
 
-Plain static HTML/CSS/JS — no build step. Open `index.html`, or serve the folder:
+Plain static HTML/CSS/JS — no build step. Published with GitHub Pages from the
+`main` branch: https://claudekovalenko.github.io/redeemer-church-kona/
+
+To preview locally, open `index.html` or serve the folder:
 
     python3 -m http.server 8000
 
