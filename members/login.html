@@ -3,125 +3,121 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Member Login · Redeemer Church</title>
+  <title>Member Sign-in · Redeemer Church</title>
+  <meta name="description" content="Sign in to the Redeemer Church member portal.">
   <meta name="robots" content="noindex">
+  <link rel="icon" href="../assets/img/seal.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/site.css">
+  <script src="../assets/js/auth.js"></script>
 </head>
-<body>
-  <main class="auth-shell" id="main">
-    <div class="auth-visual" style="background-image:url('../assets/img/photos/hero-coast.jpg')">
-      <div>
-        <blockquote>“Now you are the body of Christ and individually members of it.”<cite>1 Corinthians 12:27</cite></blockquote>
+<body data-section="members">
+  <div id="site-header"></div>
+
+  <main id="main" class="signin-page">
+    <div class="signin-card">
+      <span data-seal="seal"></span>
+      <span class="kicker both">Members Only</span>
+      <h1>Member Portal</h1>
+      <p class="sub">Sign in with the email address the church office has on file for you.</p>
+
+      <div id="view-main">
+        <button class="google-btn" type="button" id="google">
+          <svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+          Continue with Google
+        </button>
+        <div class="or">OR</div>
+        <form class="form" id="link-form">
+          <label>Email<input type="email" name="email" required autocomplete="email"></label>
+          <button class="btn" type="submit">Email me a sign-in link</button>
+        </form>
+        <p class="hint">We'll email you a link. Tap it and you're in — no password needed.</p>
+        <button class="linkish" type="button" data-show="password">Use a password instead</button>
       </div>
-    </div>
 
-    <div class="auth-panel">
-      <a class="brand" href="../index.html">
-        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="24" cy="24" r="19" fill="none" stroke="currentColor" stroke-width=".6" opacity=".6"/><path d="M24 9v30M15 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/><path d="M11 33c4-2.2 8.5-2.2 13 0s9 2.2 13 0" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
-        <span class="brand-text"><span class="brand-name">Redeemer Church</span><span class="brand-sub">Members</span></span>
-      </a>
-
-      <div class="auth-tabs" role="tablist">
-        <button role="tab" aria-selected="true" data-tab="signin">Sign In</button>
-        <button role="tab" aria-selected="false" data-tab="request">Request Access</button>
-        <button role="tab" aria-selected="false" data-tab="reset">Forgot Password</button>
-      </div>
-
-      <form class="form" data-panel="signin" id="signin-form">
-        <h2 class="mb-0">Welcome back</h2>
-        <p class="muted">Sign in to the member portal for the directory, prayer requests, documents and more.</p>
+      <form class="form" id="password-form" hidden>
         <label>Email<input type="email" name="email" required autocomplete="username"></label>
         <label>Password<input type="password" name="password" required autocomplete="current-password"></label>
         <button class="btn" type="submit">Sign In</button>
-        <p class="form-status" role="status"></p>
+        <p class="hint" style="margin:0"><button class="linkish" type="button" data-show="main">← Other ways to sign in</button></p>
       </form>
 
-      <form class="form" data-panel="request" id="request-form" hidden>
-        <h2 class="mb-0">Request member access</h2>
-        <p class="muted">Portal access is for covenant members. Your request goes to the elders, who will be in touch.</p>
+      <form class="form" id="request-form" hidden>
         <div class="row">
           <label>Full name<input name="name" required autocomplete="name"></label>
           <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
         </div>
         <label>Email<input name="email" type="email" required autocomplete="email"></label>
-        <label>Are you a member?
+        <label>Membership
           <select name="status">
-            <option>Yes, I'm a member</option>
+            <option>I'm a member</option>
             <option>I'm in the membership class</option>
             <option>I'd like to learn about membership</option>
           </select>
         </label>
-        <button class="btn" type="submit">Send Request</button>
-        <p class="form-status" role="status"></p>
+        <button class="btn" type="submit">Send Request to the Elders</button>
+        <p class="hint" style="margin:0"><button class="linkish" type="button" data-show="main">← Back to sign in</button></p>
       </form>
 
-      <form class="form" data-panel="reset" id="reset-form" hidden>
-        <h2 class="mb-0">Reset your password</h2>
-        <p class="muted">Enter the email on your member account and we'll send you a reset link.</p>
-        <label>Email<input name="email" type="email" required autocomplete="email"></label>
-        <button class="btn" type="submit">Send Reset Link</button>
-        <p class="form-status" role="status"></p>
-      </form>
+      <p class="form-status mt-1" id="status" role="status"></p>
 
-      <p class="demo-note" id="demo-note" hidden>
-        <strong>Demo mode.</strong> Sign-in is not connected to a real account system yet.
-        Try <code>member@demo.church</code> / <code>grace</code>, or <code>elder@demo.church</code> / <code>shepherd</code>.
+      <div class="signin-foot">
+        Not set up yet? <button class="linkish" type="button" data-show="request">Request member access</button> and the elders will be in touch.
+        Not a member? <a href="../visit.html">Plan a visit</a> or read about <a href="../beliefs.html">what we believe</a>.
+      </div>
+      <p class="demo-note mt-1" id="demo-note" hidden>
+        <strong>Demo mode.</strong> Sign-in isn't connected to a real member system yet. Choose
+        “Use a password instead” and try <code>member@demo.church</code> / <code>grace</code>,
+        or <code>elder@demo.church</code> / <code>shepherd</code>.
       </p>
-      <p class="small mt-2"><a href="../index.html">← Back to the website</a></p>
     </div>
   </main>
 
-  <script src="../assets/js/auth.js"></script>
   <script>
     const params = new URLSearchParams(location.search);
     const next = params.get("next") || "index.html";
     const safeNext = /^[\w-]+\.html(#[\w-]*)?$/.test(next) ? next : "index.html";
-
     if (MemberAuth.currentUser()) location.replace(safeNext);
     if (MemberAuth.mode === "demo") document.getElementById("demo-note").hidden = false;
 
-    // Tabs
-    const tabs = document.querySelectorAll("[data-tab]");
-    tabs.forEach((t) => t.addEventListener("click", () => {
-      tabs.forEach((x) => x.setAttribute("aria-selected", String(x === t)));
-      document.querySelectorAll("[data-panel]").forEach((p) => (p.hidden = p.dataset.panel !== t.dataset.tab));
-    }));
-
-    const status = (form, msg, isError) => {
-      const s = form.querySelector(".form-status");
-      s.textContent = msg;
-      s.classList.add("show");
-      s.classList.toggle("error", !!isError);
+    const views = { main: "view-main", password: "password-form", request: "request-form" };
+    const statusEl = document.getElementById("status");
+    const say = (msg, err) => { statusEl.textContent = msg; statusEl.classList.add("show"); statusEl.classList.toggle("error", !!err); };
+    const show = (v) => {
+      Object.entries(views).forEach(([k, id]) => (document.getElementById(id).hidden = k !== v));
+      statusEl.classList.remove("show");
     };
+    document.querySelectorAll("[data-show]").forEach((b) => b.addEventListener("click", () => show(b.dataset.show)));
 
-    document.getElementById("signin-form").addEventListener("submit", async (e) => {
+    document.getElementById("google").addEventListener("click", async () => {
+      try { await MemberAuth.signInWithGoogle(); location.replace(safeNext); } catch (e) { say(e.message, true); }
+    });
+    document.getElementById("link-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = new FormData(e.target).get("email");
+      await MemberAuth.sendSignInLink(email);
+      say(MemberAuth.mode === "demo"
+        ? "Demo mode: no email is sent. Use a password instead to try the portal."
+        : `If ${email} is on file, a sign-in link is on its way.`);
+    });
+    document.getElementById("password-form").addEventListener("submit", async (e) => {
       e.preventDefault();
       const d = new FormData(e.target);
-      try {
-        await MemberAuth.signIn(d.get("email"), d.get("password"));
-        location.replace(safeNext);
-      } catch (err) {
-        status(e.target, err.message, true);
-      }
+      try { await MemberAuth.signIn(d.get("email"), d.get("password")); location.replace(safeNext); }
+      catch (err) { say(err.message, true); }
     });
-
     document.getElementById("request-form").addEventListener("submit", async (e) => {
       e.preventDefault();
       const d = Object.fromEntries(new FormData(e.target));
-      await MemberAuth.signUp(d);
-      status(e.target, `Mahalo, ${d.name}. Your request has been sent to the elders.`);
+      await MemberAuth.requestAccess(d);
+      say(`Mahalo, ${d.name}. Your request has been sent to the elders.`);
       e.target.reset();
     });
-
-    document.getElementById("reset-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const d = new FormData(e.target);
-      await MemberAuth.resetPassword(d.get("email"));
-      status(e.target, "If that email belongs to a member account, a reset link is on its way.");
-    });
   </script>
+
+  <div id="site-footer"></div>
+  <script src="../assets/js/site.js"></script>
 </body>
 </html>

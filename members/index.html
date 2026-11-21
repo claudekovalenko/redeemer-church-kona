@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Member Portal · Redeemer Church</title>
+  <meta name="description" content="Redeemer Church member portal.">
   <meta name="robots" content="noindex">
+  <link rel="icon" href="../assets/img/seal.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/site.css">
   <script src="../assets/js/auth.js"></script>
   <script>window.__member = requireMember("login.html");</script>
 </head>
-<body>
+<body data-section="members">
   <div id="site-header"></div>
 
   <div class="portal">
@@ -22,51 +24,47 @@
       <a href="#directory">Directory</a>
       <a href="#prayer">Prayer Requests</a>
       <a href="#calendar">Calendar</a>
-      <a href="#documents">Documents</a>
+      <a href="#documents">Member Resources</a>
       <a href="#giving">Giving</a>
       <a href="#elders" data-role="elder" hidden>Elders' Room</a>
       <button id="sign-out" type="button">Sign Out</button>
     </nav>
 
     <main class="portal-main" id="main">
-      <p class="demo-note" id="demo-note" hidden style="margin-top:0;margin-bottom:28px">
-        <strong>Demo mode.</strong> This portal shows sample content and is not yet connected to a member database. Nothing entered here is saved or shared.
+      <p class="demo-note" id="demo-note" hidden style="margin:0 0 28px">
+        <strong>Demo mode.</strong> This portal shows sample content and isn't connected to a member database yet. Nothing entered here is saved or shared.
       </p>
 
-      <!-- Home -->
       <section class="portal-section" data-section="home" style="padding:0">
         <span class="kicker">Member Portal</span>
         <h1>Aloha, <span id="first-name">friend</span></h1>
-        <p class="lead">“Let the word of Christ dwell in you richly, teaching and admonishing one another in all wisdom.” — Colossians 3:16</p>
-
+        <p class="lead" style="font-family:var(--display);font-style:italic;font-size:1.5rem">“Let the word of Christ dwell in you richly, teaching and admonishing one another in all wisdom.” — Colossians 3:16</p>
         <div class="grid grid-3 mt-2">
-          <div class="panel"><div class="stat">4:00</div><p class="mb-0">Lord's Day worship, this Sunday</p></div>
-          <div class="panel"><div class="stat" id="prayer-count">3</div><p class="mb-0">Active prayer requests</p></div>
-          <div class="panel"><div class="stat">XXII</div><p class="mb-0">This month's Confession chapter: <a href="../beliefs.html#ch22">Of Religious Worship and the Sabbath Day</a></p></div>
+          <div class="panel"><div class="stat">4:00 pm</div><p class="mb-0">Lord's Day worship this Sunday</p></div>
+          <div class="panel"><div class="stat" id="prayer-count">3</div><p class="mb-0">Prayer requests this week</p></div>
+          <div class="panel"><div class="stat">XXII</div><p class="mb-0">Confession chapter for this month: <a href="../confession.html#chapter-22">Of Religious Worship, and the Sabbath-Day</a></p></div>
         </div>
-
         <div class="grid grid-2 mt-2">
           <div class="panel">
             <h3>Announcements</h3>
             <ul class="list">
-              <li><span>Members' meeting after the service — budget and deacon nominations</span><span class="tag">Members</span></li>
-              <li><span>Lord's Supper will be observed this Lord's Day</span><span class="tag">Worship</span></li>
-              <li><span>Membership class begins next month — invite a friend</span><span class="tag">Class</span></li>
+              <li><span>Members' meeting after worship: budget and deacon nominations</span><span class="tag">Members</span></li>
+              <li><span>The Lord's Supper will be observed this Lord's Day</span><span class="tag">Worship</span></li>
+              <li><span>Membership class begins next month</span><span class="tag">Class</span></li>
             </ul>
           </div>
           <div class="panel">
             <h3>This Week</h3>
             <ul class="list">
-              <li><span>Lord's Day Worship</span><span class="meta">Sun · 4:00 PM</span></li>
-              <li><span>Students</span><span class="meta">Thu · 6:00 PM</span></li>
-              <li><span>Community Groups</span><span class="meta">Various homes</span></li>
-              <li><span>Church Potluck in the Breezeway</span><span class="meta">After service</span></li>
+              <li><span>Lord's Day Worship</span><span class="meta">Sun · 4:00 pm</span></li>
+              <li><span>Students</span><span class="meta">Thu · 6:00 pm</span></li>
+              <li><span>Community Groups</span><span class="meta">In homes</span></li>
+              <li><span>Fellowship meal in the breezeway</span><span class="meta">After worship</span></li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- Directory -->
       <section class="portal-section" data-section="directory" hidden style="padding:0">
         <span class="kicker">Church Family</span>
         <h1>Member Directory</h1>
@@ -76,7 +74,6 @@
         <div class="directory" id="directory"></div>
       </section>
 
-      <!-- Prayer -->
       <section class="portal-section" data-section="prayer" hidden style="padding:0">
         <span class="kicker">Bear One Another's Burdens</span>
         <h1>Prayer Requests</h1>
@@ -85,87 +82,74 @@
             <h3>Share a request</h3>
             <form class="form" id="prayer-form">
               <label>Request<textarea name="text" rows="4" required></textarea></label>
-              <label>Share with
-                <select name="audience"><option>Whole church</option><option>Elders only</option></select>
-              </label>
+              <label>Share with<select name="audience"><option>Whole church</option><option>Elders only</option></select></label>
               <button class="btn" type="submit">Submit Request</button>
             </form>
           </div>
-          <div class="panel">
-            <h3>Pray for one another</h3>
-            <ul class="list" id="prayer-list"></ul>
-          </div>
+          <div class="panel"><h3>Pray for one another</h3><ul class="list" id="prayer-list"></ul></div>
         </div>
       </section>
 
-      <!-- Calendar -->
       <section class="portal-section" data-section="calendar" hidden style="padding:0">
         <span class="kicker">Calendar</span>
-        <h1>Upcoming</h1>
+        <h1>Gatherings &amp; Events</h1>
         <div class="panel">
           <ul class="list">
-            <li><span><strong>Lord's Day Worship</strong> — weekly</span><span class="meta">Sundays · 4:00 PM</span></li>
-            <li><span><strong>Members' Meeting</strong></span><span class="meta">Quarterly, after service</span></li>
-            <li><span><strong>Marriage Class</strong></span><span class="meta">Thursday evenings · 6–8 PM</span></li>
-            <li><span><strong>Women's Annual Tea</strong> — in the Breezeway</span><span class="meta">November</span></li>
-            <li><span><strong>Christmas Craft Fair</strong></span><span class="meta">December</span></li>
+            <li><span><strong>Lord's Day Worship</strong> — weekly</span><span class="meta">Sundays · 4:00 pm</span></li>
+            <li><span><strong>Members' Meeting</strong></span><span class="meta">Quarterly, after worship</span></li>
+            <li><span><strong>Marriage Class</strong></span><span class="meta">Thursday evenings</span></li>
+            <li><span><strong>Women's Annual Tea</strong> — in the breezeway</span><span class="meta">November</span></li>
             <li><span><strong>Operation Christmas Child</strong> box drive</span><span class="meta">November</span></li>
+            <li><span><strong>Christmas Craft Fair</strong></span><span class="meta">December</span></li>
           </ul>
         </div>
       </section>
 
-      <!-- Documents -->
       <section class="portal-section" data-section="documents" hidden style="padding:0">
-        <span class="kicker">Library</span>
+        <span class="kicker">Member Resources</span>
         <h1>Church Documents</h1>
         <div class="grid grid-2">
-          <div class="panel"><h3>Second London Baptist Confession (1689)</h3><p>Our doctrinal standard.</p><a href="../beliefs.html">Open →</a></div>
-          <div class="panel"><h3>Church Constitution &amp; Bylaws</h3><p>Government, membership and discipline.</p><span class="tag">Upload pending</span></div>
+          <div class="panel"><h3>The 1689 Confession</h3><p>Our confession of faith.</p><a class="text-link" href="../confession.html">Read →</a></div>
+          <div class="panel"><h3>The Baptist Catechism</h3><p>For family worship and teaching children.</p><a class="text-link" href="../catechism.html">Read →</a></div>
+          <div class="panel"><h3>Constitution &amp; Bylaws</h3><p>Church government, membership and discipline.</p><span class="tag">Upload pending</span></div>
           <div class="panel"><h3>Membership Covenant</h3><p>Our promises to God and one another.</p><span class="tag">Upload pending</span></div>
-          <div class="panel"><h3>Baptist Catechism (1693)</h3><p>For family worship and teaching children.</p><span class="tag">Upload pending</span></div>
-          <div class="panel"><h3>Keiki Parent Handbook</h3><p>Check-in, safety and classes.</p><a href="https://www.shorebreakchurch.com/s/ShorebreakKeikiHB.pdf" target="_blank" rel="noopener">Download →</a></div>
           <div class="panel"><h3>Members' Meeting Minutes</h3><p>Approved minutes from past meetings.</p><span class="tag">Upload pending</span></div>
+          <div class="panel"><h3>Keiki Parent Handbook</h3><p>Check-in, safety and classes.</p><a class="text-link" href="https://www.shorebreakchurch.com/s/ShorebreakKeikiHB.pdf" target="_blank" rel="noopener">Download →</a></div>
         </div>
       </section>
 
-      <!-- Giving -->
       <section class="portal-section" data-section="giving" hidden style="padding:0">
         <span class="kicker">Stewardship</span>
         <h1>Giving</h1>
         <div class="panel">
           <p>Manage recurring gifts and download your annual giving statement through Church Center.</p>
-          <div class="btn-row">
-            <a class="btn" href="https://shorebreakchurch.churchcenter.com/giving" target="_blank" rel="noopener">Give Online</a>
-            <a class="btn ghost" href="https://shorebreakchurch.churchcenter.com/giving" target="_blank" rel="noopener">Giving Statements</a>
-          </div>
+          <a class="btn" href="https://shorebreakchurch.churchcenter.com/giving" target="_blank" rel="noopener">Open Church Center</a>
         </div>
       </section>
 
-      <!-- Elders -->
       <section class="portal-section" data-section="elders" hidden style="padding:0">
         <span class="kicker">Elders Only</span>
         <h1>Elders' Room</h1>
         <div class="grid grid-2">
           <div class="panel"><h3>Membership Requests</h3><ul class="list"><li><span>No pending requests</span></li></ul></div>
           <div class="panel"><h3>Confidential Prayer</h3><ul class="list" id="elder-prayer"><li><span>No requests shared with elders only.</span></li></ul></div>
-          <div class="panel"><h3>Pastoral Care Notes</h3><p class="muted">Visits, follow-ups and care assignments will appear here once a member database is connected.</p></div>
+          <div class="panel"><h3>Pastoral Care</h3><p class="muted">Visits, follow-ups and care assignments will appear here once a member database is connected.</p></div>
           <div class="panel"><h3>Meeting Agendas</h3><p class="muted">Agendas and minutes for elders' meetings.</p></div>
         </div>
       </section>
     </main>
   </div>
 
-  <script src="../assets/js/site.js"></script>
   <script>
-    const user = window.__member;
-    if (user) {
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = window.__member;
+      if (!user) return;
       if (MemberAuth.mode === "demo") document.getElementById("demo-note").hidden = false;
       document.getElementById("who-name").textContent = user.name;
       document.getElementById("who-role").textContent = user.role === "elder" ? "Elder" : "Member";
       document.getElementById("first-name").textContent = user.name.split(" ")[0];
       document.querySelectorAll('[data-role="elder"]').forEach((el) => (el.hidden = user.role !== "elder"));
 
-      // Section routing by hash
       const show = () => {
         let id = (location.hash || "#home").slice(1);
         if (id === "elders" && user.role !== "elder") id = "home";
@@ -176,14 +160,13 @@
       window.addEventListener("hashchange", show);
       show();
 
-      // Directory (sample: leadership photos from the church)
+      // Sample directory from the church's leadership photos
       const people = [
         ["Leo Bilyk", "Pastor · Elder", "leo-bilyk"], ["Craig Powell", "Pastor · Elder", "craig-powell"],
         ["Margie Powell", "Deacon", "margie-powell"], ["David Shishikin", "Deacon", "david-shishikin"],
-        ["Jason Hulce", "Deacon", "jason-hulce"], ["Ed Galushkin", "Worship Leader", "ed-galushkin"],
-        ["Carol Gilormo", "Administration", "carol-gilormo"], ["Anna Shishikin", "Keiki Director", "anna-shishikin"],
-        ["Kamaile Tovkach", "Nursery Director", "kamaile-tovkach"], ["Raymond Billy", "Missionary Coordinator", "raymond-billy"],
-        ["Alex & Sylvia Tovkach", "Students Leaders", "alex-sylvia-tovkach"], ["Chris & Angela Wermes", "Students Leaders", "chris-angela-wermes"],
+        ["Jason Hulce", "Deacon", "jason-hulce"], ["Carol Gilormo", "Administration", "carol-gilormo"],
+        ["Anna Shishikin", "Keiki Director", "anna-shishikin"], ["Kamaile Tovkach", "Nursery Director", "kamaile-tovkach"],
+        ["Raymond Billy", "Missionary Coordinator", "raymond-billy"], ["Alex & Sylvia Tovkach", "Students Leaders", "alex-sylvia-tovkach"],
       ];
       const dir = document.getElementById("directory");
       const render = (q = "") => {
@@ -201,11 +184,11 @@
       document.getElementById("dir-search").addEventListener("input", (e) => render(e.target.value));
       render();
 
-      // Prayer requests (demo: kept in this page only)
+      // Prayer requests (demo: kept on this page only)
       const prayers = [
         { text: "Traveling mercies for the Woodsums as they serve with MAF.", who: "Missions", audience: "Whole church" },
         { text: "Healing for a family member recovering from surgery.", who: "A member", audience: "Whole church" },
-        { text: "Wisdom for the elders as they plan the fall teaching series.", who: "Elders", audience: "Whole church" },
+        { text: "Wisdom for the elders as they plan the coming teaching series.", who: "Elders", audience: "Whole church" },
       ];
       const list = document.getElementById("prayer-list");
       const elderList = document.getElementById("elder-prayer");
@@ -239,7 +222,10 @@
         await MemberAuth.signOut();
         location.href = "login.html";
       });
-    }
+    });
   </script>
+
+  <div id="site-footer"></div>
+  <script src="../assets/js/site.js"></script>
 </body>
 </html>

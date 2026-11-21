@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Baptist Catechism · Redeemer Church</title>
+  <meta name="description" content="The Baptist Catechism of 1693: a summary of the Christian faith in questions and answers.">
+  <link rel="icon" href="assets/img/seal.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body class="has-hero" data-section="about">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero plain">
+      <span data-seal="seal-watermark"></span>
+      <div class="wrap">
+        <div class="crumbs"><a href="index.html">Home</a><span>/</span>Baptist Catechism</div>
+        <span class="kicker light">Teaching the Faith</span>
+        <h1>The Baptist Catechism</h1>
+        <p>A summary of the Christian faith in questions and answers, for the instruction of young and old. Commissioned by the Particular Baptists' General Assembly in 1693 and often called Keach's Catechism, it closely follows the Westminster Shorter Catechism and teaches the doctrine of the 1689 Confession.</p>
+        <div class="btn-row mt-2">
+          <a class="btn white" href="#q1">Begin with Question 1</a>
+          <a class="btn outline-light" href="confession.html">The 1689 Confession</a>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:60px">
+      <div class="wrap reader">
+        <nav class="reader-nav" id="topics" aria-label="Topics"></nav>
+        <div>
+          <div class="reader-tools">
+            <span class="muted small" style="margin-right:auto">114 questions in 13 topics</span>
+            <button type="button" class="toggle" id="practice" aria-pressed="false">Practice: hide answers</button>
+          </div>
+          <div id="catechism"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const T = window.BAPTIST_CATECHISM || [];
+      const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+      const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      document.getElementById("topics").innerHTML = T.map((t) => {
+        const a = t.questions[0].n, b = t.questions[t.questions.length - 1].n;
+        return `<a href="#${slug(t.title)}"><span>${a}</span><span>${esc(t.title)}</span></a>`;
+      }).join("");
+      document.getElementById("catechism").innerHTML = T.map((t) => `
+        <div id="${slug(t.title)}" style="padding-top:12px;margin-bottom:40px">
+          <span class="kicker">Q. ${t.questions[0].n}–${t.questions[t.questions.length - 1].n}</span>
+          <h2>${esc(t.title)}</h2>
+          ${t.questions.map((q) => `
+            <div class="qa" id="q${q.n}">
+              <div class="q-no">${q.n}.</div>
+              <div><p class="q">${esc(q.q)}</p><p class="a">${esc(q.a)}</p></div>
+            </div>`).join("")}
+        </div>`).join("");
+
+      const btn = document.getElementById("practice");
+      btn.addEventListener("click", () => {
+        const on = btn.getAttribute("aria-pressed") !== "true";
+        btn.setAttribute("aria-pressed", String(on));
+        document.querySelectorAll("#catechism .a").forEach((a) => { a.style.filter = on ? "blur(6px)" : ""; a.style.cursor = on ? "pointer" : ""; });
+      });
+      document.getElementById("catechism").addEventListener("click", (e) => {
+        if (e.target.classList.contains("a")) e.target.style.filter = "";
+      });
+      if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
+    });
+  </script>
+
+  <div id="site-footer"></div>
+  <script src="assets/js/site.js"></script>
+  <script src="assets/data/baptist-catechism.js"></script>
+</body>
+</html>
