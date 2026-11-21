@@ -114,7 +114,7 @@ window.churchSeal = function (cls = "seal", ringText = true) {
         <div class="footer-grid">
           <div class="footer-brand">
             ${brand}
-            <p>A church in ${C.place}, rooted in the Scriptures and the historic Reformed faith, gathered each Lord's Day to worship the Triune God.</p>
+            <p>A church rooted in the Scriptures and the historic Reformed faith, gathered each Lord's Day to worship the Triune God.</p>
           </div>
           <div>
             <h4>The Lord's Day</h4>
