@@ -28,7 +28,7 @@ window.CHURCH = {
 window.churchSeal = function (cls = "seal", ringText = true) {
   const ring = ringText
     ? `<defs><path id="sealRing" d="M50 50 m-37 0 a37 37 0 1 1 74 0 a37 37 0 1 1 -74 0"/></defs>
-       <text font-family="Cormorant Garamond, Georgia, serif" font-size="9.2" letter-spacing="2.4" fill="currentColor"><textPath href="#sealRing" startOffset="2%">REDEEMER CHURCH · KAILUA-KONA · MDCLXXXIX ·</textPath></text>`
+       <text font-family="Cormorant Garamond, Georgia, serif" font-size="9.2" letter-spacing="2.4" fill="currentColor"><textPath href="#sealRing" startOffset="2%">REDEEMER CHURCH · KAILUA-KONA · HAWAII ·</textPath></text>`
     : "";
   return `<svg class="${cls}" viewBox="0 0 100 100" aria-hidden="true">
     <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="1.4"/>
@@ -52,7 +52,7 @@ window.churchSeal = function (cls = "seal", ringText = true) {
       ${churchSeal("seal", false)}
       <span class="brand-text">
         <span class="brand-name">${C.name}</span>
-        <span class="brand-sub">Reformed Baptist · Kona</span>
+        <span class="brand-sub">Kailua-Kona · Hawaiʻi</span>
       </span>
     </a>`;
 
@@ -62,7 +62,7 @@ window.churchSeal = function (cls = "seal", ringText = true) {
     { key: "visit", label: "Visit", href: "visit.html" },
     { key: "about", label: "About", href: "about.html", children: [
       ["What We Believe", "Scripture, sovereign grace, the solas", "beliefs.html"],
-      ["1689 Confession", "Our confession, chapter by chapter", "confession.html"],
+      ["Confession of Faith", "The historic confession we hold", "confession.html"],
       ["Baptist Catechism", "Questions and answers to learn by heart", "catechism.html"],
       ["Our Heritage", "Reformation and Particular Baptist roots", "about.html#heritage"],
       ["Leadership", "Elders, deacons and ministry leaders", "leadership.html"],
@@ -114,7 +114,7 @@ window.churchSeal = function (cls = "seal", ringText = true) {
         <div class="footer-grid">
           <div class="footer-brand">
             ${brand}
-            <p>A confessional Reformed Baptist church in ${C.place}, gathered each Lord's Day to worship the Triune God.</p>
+            <p>A church in ${C.place}, rooted in the Scriptures and the historic Reformed faith, gathered each Lord's Day to worship the Triune God.</p>
           </div>
           <div>
             <h4>The Lord's Day</h4>
@@ -134,7 +134,7 @@ window.churchSeal = function (cls = "seal", ringText = true) {
             <h4>Explore</h4>
             <ul>
               <li><a href="${root}beliefs.html">What We Believe</a></li>
-              <li><a href="${root}confession.html">1689 Confession</a></li>
+              <li><a href="${root}confession.html">Confession of Faith</a></li>
               <li><a href="${root}catechism.html">Baptist Catechism</a></li>
               <li><a href="${root}leadership.html">Leadership</a></li>
               <li><a href="${root}sermons.html">Sermons &amp; Live Stream</a></li>

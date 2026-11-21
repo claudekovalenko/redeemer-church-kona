@@ -36,13 +36,13 @@
     document.querySelectorAll("#reader-nav a").forEach((a) => a.setAttribute("aria-current", String(a.dataset.n === String(n))));
     $("conf-index").hidden = true;
     $("conf-reader").hidden = false;
-    document.title = `Chapter ${ROMAN[n]}: ${c.title} · 1689 Confession`;
+    document.title = `Chapter ${ROMAN[n]}: ${c.title} · Confession of Faith`;
   }
 
   function showIndex() {
     $("conf-index").hidden = false;
     $("conf-reader").hidden = true;
-    document.title = "The 1689 Confession · Redeemer Church";
+    document.title = "Confession of Faith · Redeemer Church";
   }
 
   function applyPrefs() {

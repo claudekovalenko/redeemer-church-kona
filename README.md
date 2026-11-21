@@ -1,7 +1,7 @@
 # Redeemer Church · Kailua-Kona
 
-Website for a confessional Reformed Baptist church holding to the
-Second London Baptist Confession of Faith (1689). Content and photos were
+Website for a gospel-centered church in Kailua-Kona, rooted in the historic Reformed faith
+and the Second London Baptist Confession of Faith (1689). Content and photos were
 carried over from shorebreakchurch.com and rewritten in a Reformed voice.
 
 Plain static HTML/CSS/JS — no build step. Open `index.html`, or serve the folder:

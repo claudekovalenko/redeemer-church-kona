@@ -451,3 +451,12 @@ section { padding: clamp(68px, 9vw, 124px) 0; }
 .muted { color: var(--muted); }
 .small { font-size: .95rem; }
 [hidden] { display: none !important; }
+
+/* Light page opener (used on the Confession page) */
+.page-hero.light { background: var(--vellum); color: var(--ink); padding: 90px 0 64px; border-bottom: 1px solid var(--line); }
+.page-hero.light::before { display: none; }
+.page-hero.light h1 { color: var(--ink); }
+.page-hero.light p { color: var(--ink-soft); }
+.page-hero.light .crumbs { color: var(--muted); }
+.page-hero.light .crumbs a { color: var(--copper); }
+.page-hero.light .seal-watermark { color: rgba(38,41,42,.05); }
